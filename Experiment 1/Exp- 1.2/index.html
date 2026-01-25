@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Banking UI</title>
+
+<style>
+body {
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    width: 350px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+}
+
+.buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    width: 45%;
+    padding: 10px;
+    color: white;
+    border: none;
+}
+
+.deposit { background: blue; }
+.withdraw { background: red; }
+
+p {
+    color: red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Balance: $<span id="balance">1000</span></h1>
+
+    <input type="number" id="amount" placeholder="Amount">
+
+    <div class="buttons">
+        <button class="deposit" onclick="deposit()">Deposit</button>
+        <button class="withdraw" onclick="withdraw()">Withdraw</button>
+    </div>
+
+    <p id="msg"></p>
+</div>
+
+<script>
+let balance = 1000;
+
+function deposit() {
+    let amt = Number(amount.value);
+    if (amt <= 0) {
+        msg.innerText = "Invalid amount!";
+        return;
+    }
+    balance += amt;
+    balanceDisplay();
+}
+
+function withdraw() {
+    let amt = Number(amount.value);
+    if (amt <= 0 || amt > balance) {
+        msg.innerText = "Invalid amount!";
+        return;
+    }
+    balance -= amt;
+    balanceDisplay();
+}
+
+function balanceDisplay() {
+    document.getElementById("balance").innerText = balance;
+    msg.innerText = "";
+}
+</script>
+
+</body>
+</html>
+
 
